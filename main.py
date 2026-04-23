@@ -1,6 +1,8 @@
 from smolagents import LiteLLMModel, CodeAgent
 from transformers import AutoTokenizer
 
+from src.simple_calculator_tool import calculator
+
 messages = [
     {
         "role": "system",
@@ -18,6 +20,9 @@ def tokenize_data(messages=messages):
     )
 
     print(rendered_prompt)
+
+    # use the tool
+    print(calculator.to_string())
 
 
 def main():
