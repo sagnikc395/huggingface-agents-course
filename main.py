@@ -1,4 +1,23 @@
 from smolagents import LiteLLMModel, CodeAgent
+from transformers import AutoTokenizer
+
+messages = [
+    {
+        "role": "system",
+        "content": "You are an AI assistant with access to various tools.",
+    },
+    {"role": "user", "content": "Hi !"},
+    {"role": "assistant", "content": "Hi human, what can help you with ?"},
+]
+
+
+def tokenize_data(messages=messages):
+    tokenizer = AutoTokenizer.from_pretrained("HuggingFaceTB/SmolLM2-1.7B-Instruct")
+    rendered_prompt = tokenizer.apply_chat_template(
+        messages, tokenize=False, add_generation_prompt=True
+    )
+
+    print(rendered_prompt)
 
 
 def main():
@@ -17,4 +36,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    tokenize_data(messages=messages)
